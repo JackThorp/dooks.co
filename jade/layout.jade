@@ -1,0 +1,17 @@
+mixin scripts
+  script(src='/lib/jquery/dist/jquery.js')
+  script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js')
+
+mixin stylesheets
+  link(rel='stylesheet' type='text/css' href='//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
+
+
+doctype html
+html(lang='en-US')
+  head
+    title Daisy
+    +stylesheets()
+  body
+    .container
+      block content
+  +scripts()
