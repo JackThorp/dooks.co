@@ -138,6 +138,22 @@ task 'start-dev', [], async: true, ->
 
 # Deploy Tasks #########################################
 
+# Temporary path for deployment
+DEPLOY_DIR = path.join __dirname, 'deploy'
+JADE_DIR = path.join __dirname, 'jade'
+
+# Load compilation function
+compileTools = require './server'
+
+# Sets process environment to allow for git operations out of tree
+setGitDir = (dir) ->
+  process.env.GIT_WORK_TREE = GIT_WORK_TREE = dir
+  process.env.GIT_DIR = GIT_DIR = path.join GIT_WORK_TREE, '.git'
+
+# Get all jade files inside JADE_DIR
+jadeFiles = lsRecursive JADE_DIR
+  .filter (jf) -> !/layout\.jade$/.test(jf) and /\.jade$/.test(jf)
+
 desc 'Creates new CNAME file in deploy repo'
 file './deploy/CNAME', ['create-deploy-dir'], async: true, ->
   title 'Creating CNAME alias'# {{{
@@ -148,7 +164,7 @@ file './deploy/CNAME', ['create-deploy-dir'], async: true, ->
 desc 'Creates temporary deploy directory'
 task 'create-deploy-dir', [], async: true, ->
   title 'Creating ./deploy directory and repo'# {{{
-  process.env.GIT_DIR = path.join __dirname, 'deploy', '.git'
+  setGitDir DEPLOY_DIR
   chain\
   ( [ 'rm', ['-rf', './deploy']]
     [ 'mkdir', ['./deploy']
@@ -157,16 +173,19 @@ task 'create-deploy-dir', [], async: true, ->
     , 'Failed to init git repo in ./deploy' ]
     [ 'mkdir', ['./deploy/pages', './deploy/css', './deploy/js']
     , 'Failed to create subfolders for build' ]
+    # Success output
     [ 'Successfully created deploy git' ]
   ).finally complete # }}}
 
-DEPLOY_DIR = path.join __dirname, 'deploy'
-
-# Load compilation function
-compileTools = require './server'
-
-jadeFiles = lsRecursive("#{__dirname}/jade")
-  .filter (jf) -> !/layout\.jade$/.test(jf) and /\.jade$/.test(jf)
+desc 'Sets up choice of homepage'
+file './deploy/index.html', ['compile-jade'], async: true, ->
+  title 'Copying homepage to ./deploy/index.html'# {{{
+  chain\
+  ( [ 'cp', ['./deploy/pages/home.html', './deploy/index.html']
+    , 'Failed to copy ./deploy/pages/home.html to ./deploy/index.html' ]
+    # Success output
+    [ 'Successfully copied ./deploy/pages/home.html to ./deploy/index.html' ]
+  )# }}}
 
 desc 'Compiles jade pages into deploy/pages'
 task 'compile-jade', ['create-deploy-dir'], ->
@@ -187,15 +206,22 @@ task 'compile-jade', ['create-deploy-dir'], ->
   succeed 'Successfully compiled all Jade targets'# }}}
 
 desc 'Pushes site to production'
-task 'deploy', ['./deploy/CNAME', 'compile-jade', 'create-deploy-dir'], ->
+task 'deploy', [
+  './deploy/CNAME'
+  './deploy/index.html'
+  'compile-jade'
+  'create-deploy-dir'
+], async: true, ->
   title 'Deploying to github'# {{{
-  process.env.GIT_DIR = path.join __dirname, 'deploy', '.git'
+  setGitDir DEPLOY_DIR
   chain\
-  ( [ 'git', ['add', '-A', '.']
+  ( [ 'git', ['add', '-A', ':/']
     , 'Failed to add files to deploy repo' ]
     [ 'git', ['commit', '-am', '"Deploy commit"']
     , 'Failed to commit files into deploy history' ]
-    [ 'git', ['push', '"git@github.com:JackThorp/dooks.co.git"', 'master:gh-pages', '--force']
+    [ 'git'
+      [ '--git-dir', './deploy/.git', 'push', '--force'
+      , 'https://github.com/JackThorp/dooks.co.git', 'master:gh-pages' ]
     , 'Failed to push to gh-pages branch of git repo' ]
     [ 'rm', ['-rf', DEPLOY_DIR]
     , 'Failed to remove deploy directory' ]
