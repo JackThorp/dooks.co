@@ -45,11 +45,12 @@ div img {
 
 
 #fat_tank {
-  display: block;
-  float: center;
+  /*display: block;
+  margin: auto;
   text-align: center;
-  width: 20px;
-  height: 20px ;
+  align: center;*/
+  width: 30%;
+  height: 30% ;
 }
 
 
