@@ -143,6 +143,7 @@ DEPLOY_DIR = path.join __dirname, 'deploy'
 JADE_DIR = path.join __dirname, 'jade'
 CSS_DIR = path.join __dirname, 'css'
 IMG_DIR = path.join __dirname, 'imgs'
+PUBLIC_DIR = path.join __dirname, 'public'
 
 # Load compilation function
 compileTools = require './server'
@@ -170,17 +171,17 @@ file './deploy/CNAME', ['create-deploy-dir'], async: true, ->
     if err? then fail 'Failed to create CNAME'
     else succeed 'Successfully created CNAME file'# }}}
 
-desc 'Creates temporary deploy directory'
+desc 'Creates temporary deploy directory from public'
 task 'create-deploy-dir', [], async: true, ->
   title 'Creating ./deploy directory and repo'# {{{
   setGitDir DEPLOY_DIR
   chain\
   ( [ 'rm', ['-rf', './deploy']]
-    [ 'mkdir', ['./deploy']
-    , 'Failed to create deploy directory' ]
+    [ 'cp', ['-r', './public', './deploy']
+    , 'Failed to create copy public to deploy directory' ]
     [ 'git', ['init']
     , 'Failed to init git repo in ./deploy' ]
-    [ 'mkdir', ['./deploy/pages', './deploy/css', './deploy/imgs', './deploy/js']
+    [ 'mkdir', ['-p','./deploy/pages', './deploy/css', './deploy/imgs', './deploy/js']
     , 'Failed to create subfolders for build' ]
     # Success output
     [ 'Successfully created deploy git' ]
