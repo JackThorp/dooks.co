@@ -141,11 +141,13 @@ task 'start-dev', [], async: true, ->
 # Temporary path for deployment
 DEPLOY_DIR = path.join __dirname, 'deploy'
 JADE_DIR = path.join __dirname, 'jade'
+CSS_DIR = path.join __dirname, 'css'
+IMG_DIR = path.join __dirname, 'imgs'
 
 # Load compilation function
 compileTools = require './server'
 
-# Sets process environment to allow for git operations out of tree
+#"AAHhbQ9D8d0BAKmQokl0ZCg3dQzotngG6iEQ9ALbP7XKYsKx3dNA4zzpiVZBBNTItDcTiUI5JXTBNdu1i6sFHJ1X5Hu2JOXeoLt3uwWka5RAykFSkPTY8PALiaxZCZBjDbsaVUvvah0JVVQadfQNtzF467IfdFZBG0D8FMdz3ZAkeN92twZAoGrPprcRtKjqVoZD" Sets process environment to allow for git operations out of tree
 setGitDir = (dir) ->
   process.env.GIT_WORK_TREE = GIT_WORK_TREE = dir
   process.env.GIT_DIR = GIT_DIR = path.join GIT_WORK_TREE, '.git'
@@ -153,6 +155,13 @@ setGitDir = (dir) ->
 # Get all jade files inside JADE_DIR
 jadeFiles = lsRecursive JADE_DIR
   .filter (jf) -> !/layout\.jade$/.test(jf) and /\.jade$/.test(jf)
+
+# Get all css files inside CSS_DIR
+cssFiles = lsRecursive CSS_DIR
+  .filter (cf) -> /\.css$/.test(cf)
+
+imgFiles = lsRecursive IMG_DIR
+  .filter (imf) -> /\.jpg$/.test(imf) 
 
 desc 'Creates new CNAME file in deploy repo'
 file './deploy/CNAME', ['create-deploy-dir'], async: true, ->
@@ -171,7 +180,7 @@ task 'create-deploy-dir', [], async: true, ->
     , 'Failed to create deploy directory' ]
     [ 'git', ['init']
     , 'Failed to init git repo in ./deploy' ]
-    [ 'mkdir', ['./deploy/pages', './deploy/css', './deploy/js']
+    [ 'mkdir', ['./deploy/pages', './deploy/css', './deploy/imgs', './deploy/js']
     , 'Failed to create subfolders for build' ]
     # Success output
     [ 'Successfully created deploy git' ]
@@ -205,11 +214,34 @@ task 'compile-jade', ['create-deploy-dir'], ->
     log "done!"
   succeed 'Successfully compiled all Jade targets'# }}}
 
+desc 'Copies all css files into deploy/css'
+task 'copy-css', ['create-deploy-dir'], ->
+  title 'Copying css files from ./css to ./deploy/css'# {{{
+  for cf in cssFiles
+    cssFile = "#{cf.match(/([^/]+)\.css$/)[1]}.css"
+    cssPath = path.join DEPLOY_DIR, 'css', cssFile
+    console.log(cssPath)
+    fs.createReadStream(cf).pipe(fs.createWriteStream(cssPath))
+  succeed 'Successfully copied ./css to ./deploy/css' # }}}  
+
+
+desc 'Copies all img files into deploy/imgs'
+task 'copy-imgs', ['create-deploy-dir'], ->
+  title 'Copying img files from ./imgs to ./deploy/imgs'# {{{
+  for imf in imgFiles
+    imgFile = "#{imf.match(/([^/]+)\.jpg$/)[1]}.jpg"
+    imgPath = path.join DEPLOY_DIR, 'imgs', imgFile
+    console.log(imgPath)
+    fs.createReadStream(imf).pipe(fs.createWriteStream(imgPath))
+  succeed 'Successfully copied ./imgs to ./deploy/imgs' # }}}  
+
 desc 'Pushes site to production'
 task 'deploy', [
   './deploy/CNAME'
   './deploy/index.html'
   'compile-jade'
+  'copy-css'
+  'copy-imgs'
   'create-deploy-dir'
 ], async: true, ->
   title 'Deploying to github'# {{{

@@ -2,7 +2,29 @@ extends layout
 
 block content
   .row
-    .col-md-3
-      h1 BAM
-    .col-md-9
+    #box.col-md-8.col-md-offset-2
+      h1 DOOKS
+  .row
+    iframe#vid.col-md-8.col-md-offset-2(src="//www.youtube.com/embed/aPeQeXQ0Y5o?hd=1&autohide=1&showinfo=0&controls=2&rel=0&autoplay=1&modestbranding=1" frameborder="0" height="500")
+  .row
+    #about.col-md-8.col-md-offset-2
       != about
+  .row
+    iframe#scloud.col-md-8.col-md-offset-2(width="700" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/152970515&amp;color=000000&amp;auto_play=false")
+  .row
+    #live.col-md-8.col-md-offset-2
+      != live
+  br
+  .row
+      .col-md-3.col-md-offset-2
+        img#rim.row(src="imgs/piano.jpg")
+        img#rim.row(src="imgs/portrait.jpg")
+      img.col-md-5(src="imgs/grid.jpg")
+  .row
+      img.col-md-8.col-md-offset-2(src="imgs/sat.jpg")
+  br
+  br
+  .row
+      .col-md-8.col-md-offset-2
+        img#fat_tank(src="imgs/fat_tank.jpg")
+    

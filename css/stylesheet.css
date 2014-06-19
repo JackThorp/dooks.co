@@ -1,0 +1,55 @@
+#box {
+  text-align: center;
+  align: center;
+}
+
+#vid {
+  position: relative;
+  height: 500;
+}
+
+#about {
+  text-align: center;
+}
+
+#live {
+  text-align: center;
+}
+
+p {
+  color: red;
+}
+
+h1 {
+  font-family: "Georgia, serif";
+  font-size: 70px;
+  height: 90px;
+}
+
+h2 {
+  font-family: "Palatino Linotype";
+  font-size: 40px;
+}
+
+div img {
+  text-align: center;
+  width: 100%;
+  max-height: 100%;
+  /*vertical-align: middle;*/
+}
+
+#rim {
+  text-align: center;
+  width: 100%;
+}
+
+
+#fat_tank {
+  display: block;
+  float: center;
+  text-align: center;
+  width: 20px;
+  height: 20px ;
+}
+
+
