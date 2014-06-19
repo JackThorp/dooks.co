@@ -4,10 +4,11 @@ path = require 'path'
 jade = require 'jade'
 express = require 'express'
 
-HTML_FILE = path.join __dirname, 'index.html'
-LAYOUT_FILE = path.join __dirname, 'layout.jade'
-JADE_DIR = path.join __dirname, 'jade'
+HTML_FILE    = path.join __dirname, 'index.html'
+LAYOUT_FILE  = path.join __dirname, 'layout.jade'
+JADE_DIR     = path.join __dirname, 'jade'
 MARKDOWN_DIR = path.join __dirname, 'markdown'
+PUBLIC_DIR   = path.join __dirname, 'public'
 
 module.exports = tools =
 
@@ -60,6 +61,7 @@ if !module.parent?
   app.get '/', (req, res) ->
     res.redirect '/page/home'
   app.get '/page/:name', tools.servePage
+  app.use express.static PUBLIC_DIR
   app.listen (PORT = 3000), (err) ->
     if err? then console.error err
     else
