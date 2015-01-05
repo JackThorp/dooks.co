@@ -2,29 +2,61 @@ extends layout
 
 block content
   .row
-    #box.col-md-8.col-md-offset-2
-      h1 DOOKS
-  .row
-    iframe#vid.col-md-8.col-md-offset-2(src="//www.youtube.com/embed/aPeQeXQ0Y5o?hd=1&autohide=1&showinfo=0&controls=2&rel=0&autoplay=1&modestbranding=1" frameborder="0" height="500")
-  .row
-    #about.col-md-8.col-md-offset-2
-      != about
-  .row
-    iframe#scloud.col-md-8.col-md-offset-2(width="700" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/152970515&amp;color=000000&amp;auto_play=false")
-  .row
-    #live.col-md-8.col-md-offset-2
-      != live
+    .col-xs-12
+      .row
+        .col-xs-10.col-xs-offset-1#title
+          h1#dooks D O O K S 
+      .row.section
+        .col-xs-2.col-xs-offset-2
+          a(href="https://www.facebook.com/dooksmusic") 
+            .circle
+              h3.head-link#fb-link fb
+        .col-xs-2
+          a(href="https://twitter.com/_DOOKS_") 
+            .circle
+              h3.head-link#tw-link tw
+        .col-xs-2
+          a(href="https://www.youtube.com/user/DOOKSmusic") 
+            .circle
+              h3.head-link#yt-link yt
+        .col-xs-2
+          a(href="https://soundcloud.com/dooksmusic") 
+            .circle
+              h3.head-link#sc-link sc
+
+  // youtube video 
+  .row.cd-fixed-bg.cd-bg-1.section
+    .col-xs-12.col-sm-10.col-sm-offset-1
+      .videoWrapper
+        iframe(width="560" height="315" src="//www.youtube.com/embed/HIKS9OD8hLY?hd=1&autohide=1&showinfo=0&controls=2&rel=0&autoplay=1&modestbranding=1" frameborder="0")
+
+  // about 
+  .row.cd-scrolling-bg.cd-color-2.section
+    .col-xs-12.col-sm-8.col-sm-offset-2
+      .center-text
+        != about
+
+  // bridge
+  .row.cd-fixed-bg.cd-bg-1.section
+    .col-xs-12#banner
+
+  // soundcloud player
+  .row.section
+    .col-xs-12.col-sm-8.col-sm-offset-2
+      iframe(width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/163831722&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true")
+        
+  .row.section
+    .col-xs-12.col-sm-8.col-sm-offset-2
+      .center-text
+        != live
   br
   .row
-    .col-md-3.col-md-offset-2
-      img#rim.row(src="imgs/piano.jpg")
-      img#rim.row(src="imgs/portrait.jpg")
-    img.col-md-5(src="imgs/grid.jpg")
-  .row
-    img.col-md-8.col-md-offset-2(src="imgs/sat.jpg")
+    .col-md-12
+      img.img-responsive(src="/imgs/piano.jpg")
   br
   br
   .row
-    .col-md-8.col-md-offset-2
-      //img#fat_tank(src="imgs/fat_tank.jpg")
+    .col-md-12
+      a(href="http://www.fattankstudios.co.uk")
+        img.img-responsive(src="/imgs/fat_tank_200.jpg")
    

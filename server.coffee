@@ -58,11 +58,16 @@ module.exports = tools =
 # If being required, then don't start server
 if !module.parent?
   app = express()
+  logger = (req, res, next) ->
+    console.log req.originalUrl
+    next()
+  app.use logger
+  app.use express.static PUBLIC_DIR
+  app.use logger
   app.get '/', (req, res) ->
     res.redirect '/page/home'
   app.get '/page/:name', tools.servePage
-  app.use express.static PUBLIC_DIR
-  app.listen (PORT = 3000), (err) ->
+  app.listen (PORT = 3001), (err) ->
     if err? then console.error err
     else
       console.log "Server listening on http://localhost:#{PORT}"

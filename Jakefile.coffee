@@ -129,7 +129,7 @@ task 'start-dev', [], async: true, ->
   title 'Starting nodemon dev server'# {{{
   server = spawn\
   ( 'nodemon'
-  , ['server.coffee', '-w', 'server.coffee']
+  , ['server2.coffee', '-w', 'server2.coffee']
   , stdio: ['ignore', 'pipe', 'pipe'] )
   do newline
   server.stderr.pipe process.stderr
@@ -146,7 +146,7 @@ IMG_DIR = path.join __dirname, 'imgs'
 PUBLIC_DIR = path.join __dirname, 'public'
 
 # Load compilation function
-compileTools = require './server'
+compileTools = require './server2'
 
 #"AAHhbQ9D8d0BAKmQokl0ZCg3dQzotngG6iEQ9ALbP7XKYsKx3dNA4zzpiVZBBNTItDcTiUI5JXTBNdu1i6sFHJ1X5Hu2JOXeoLt3uwWka5RAykFSkPTY8PALiaxZCZBjDbsaVUvvah0JVVQadfQNtzF467IfdFZBG0D8FMdz3ZAkeN92twZAoGrPprcRtKjqVoZD" Sets process environment to allow for git operations out of tree
 setGitDir = (dir) ->
@@ -162,7 +162,7 @@ cssFiles = lsRecursive CSS_DIR
   .filter (cf) -> /\.css$/.test(cf)
 
 imgFiles = lsRecursive IMG_DIR
-  .filter (imf) -> /\.jpg$/.test(imf) 
+  .filter (imf) -> /\.jpg$/.test(imf)
 
 desc 'Creates new CNAME file in deploy repo'
 file './deploy/CNAME', ['create-deploy-dir'], async: true, ->
@@ -225,7 +225,7 @@ task 'copy-css', ['create-deploy-dir'], ->
     fs.createReadStream(cf).pipe(fs.createWriteStream(cssPath))
   succeed 'Successfully copied ./css to ./deploy/css' # }}}  
 
-
+# shouldn't we have async: true for these 2 tasks??
 desc 'Copies all img files into deploy/imgs'
 task 'copy-imgs', ['create-deploy-dir'], ->
   title 'Copying img files from ./imgs to ./deploy/imgs'# {{{
@@ -256,8 +256,8 @@ task 'deploy', [
       [ '--git-dir', './deploy/.git', 'push', '--force'
       , 'https://github.com/JackThorp/dooks.co.git', 'master:gh-pages' ]
     , 'Failed to push to gh-pages branch of git repo' ]
-    [ 'rm', ['-rf', DEPLOY_DIR]
-    , 'Failed to remove deploy directory' ]
+    #[ 'rm', ['-rf', DEPLOY_DIR]
+    #, 'Failed to remove deploy directory' ]
     # Success output
     [ 'Successfully deployed to gh-pages of git repo' ]
   ).finally complete# }}}

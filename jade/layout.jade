@@ -1,19 +1,23 @@
 mixin scripts
-  script(src='/lib/jquery/dist/jquery.js')
+  script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
   script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js')
 
 mixin stylesheets
   link(rel='stylesheet' type='text/css' href='//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
-  link(rel='stylesheet' type='text/css' href='css/stylesheet.css')
-
+  link(rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700')
+  link(rel='stylesheet' type='text/css' href='/css/stylesheet.css')
+  link(rel='stylesheet' type='text/css' href='/css/style.css')
 
 doctype html
 html(lang='en-UK')
   head
     title D O O K S
+    meta(name="viewport" content="width=device-width, initial-scale=1" ) 
+    link(rel="shortcut icon" href="http://faviconist.com/icons/60935f7db0bf24347d08dcb40c5bbdd3/favicon.ico" ) 
+    link(rel="icon" href="http://faviconist.com/icons/60935f7db0bf24347d08dcb40c5bbdd3/favicon.ico") 
     +stylesheets()
   body
-    .container
+    .container-fluid
       block content
     .container
   +scripts()

@@ -1,56 +1,145 @@
-#box {
+.circle {
+  width: 50px;
+  height: 50px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
   text-align: center;
-  align: center;
+  //visibility: hidden;
+  margin: 0 auto;
 }
 
-#vid {
-  position: relative;
-  height: 500;
-}
-
-#about {
+.head-link {
+  text-transform: uppercase;
   text-align: center;
+  letter-spacing: 6px;
+  font-family: 'Droid serif', serif;
+  font-size: 20px;
+  padding-top: 15px;
+  padding-left: 5px;
+  display: block;
+  visibility: visible;
 }
 
-#live {
+@media screen and (max-width: 720px) {
+  .circle {
+    width: 40px;
+    height: 40px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+  }
+
+  .head-link {
+    letter-spacing: 4px;
+    font-size: 15px;
+    padding-top: 10px;
+    padding-left: 3px;
+  }
+}
+
+.circle:hover {
+  background-color: lightblue;
+  visibility: visible;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+#fb-link {
+  color: #3a5795;
+}
+
+#tw-link {
+  color: #5ea9dd;
+}
+
+#yt-link {
+  color: #e12b28;
+}
+
+#sc-link {
+  color: #ff5500;
+}
+
+#title {
+  float: center;
+}
+
+#dooks {
   text-align: center;
-}
-
-p {
-  color: red;
-}
-
-h1 {
-  font-family: "Georgia, serif";
+  font-family: 'Droid serif', serif;
   font-size: 70px;
-  height: 90px;
+  margin-top: 40px;
+  letter-spacing: 2px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.img-responsive {
+  margin: 0 auto;
+}
+
+.videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 25px;
+  height: 0;
+}
+
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#banner {
+  margin: 0;
+  padding: 0;
+  height: 400px;
+}
+
+.center-text {
+  text-align: center;
+}
+
+@media screen and (max-width: 720px) {
+  #dooks {
+    font-size: 50px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  #dooks { 
+    font-size: 50px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  #dooks {
+    font-size: 35px;
+  }
 }
 
 h2 {
   font-family: "Palatino Linotype";
   font-size: 40px;
-}
-
-div img {
-  text-align: center;
-  width: 100%;
-  max-height: 100%;
-  /*vertical-align: middle;*/
+  margin: 30px 0px;
 }
 
 #rim {
+  display: block;
   text-align: center;
-  width: 100%;
+  width: 308px;
 }
-
 
 #fat_tank {
-  /*display: block;
-  margin: auto;
-  text-align: center;
-  align: center;*/
-  width: 30%;
-  height: 30% ;
+  width: 100%;
+  height: 100% ;
 }
-
 
