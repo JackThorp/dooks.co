@@ -1,0 +1,137 @@
+body { 
+    background: url(/imgs/dooksshoes.jpg) no-repeat center center fixed; 
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+}
+
+.middle-div {
+  width: 100%;
+  height: 50%;
+  margin: auto;
+  position: absolute;
+  //background-color: white;
+  top: 0; left: 0; right: 0; bottom: 0;
+}
+
+.head-link {
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 6px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  padding-top: 15px;
+  padding-left: 5px;
+  display: block;
+  visibility: visible;
+  color: #c8a2c8;
+}
+
+@media screen and (max-width: 720px) {
+  .head-link {
+    letter-spacing: 4px;
+    font-size: 15px;
+  }
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+#fb-link {
+  //color: #3a5795;
+}
+
+#fb-link:hover {
+  color: #C5A86A;
+}
+
+#tw-link {
+  //color: #5ea9dd;
+}
+
+#tw-link:hover {
+  color: #C5A86A;
+}
+
+#yt-link {
+  //color: #e12b28;
+}
+
+#yt-link:hover {
+  color: #C5A86A;
+}
+
+#sc-link {
+  //color: #ff5500;
+}
+
+#sc-link:hover {
+  color: #C5A86A;
+}
+
+#dooks {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 7em;
+  letter-spacing: 2px;
+  color: #C5A86A;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.upper-text {
+  text-transform: uppercase;
+}
+
+.img-responsive {
+  margin: 0 auto;
+}
+
+.medium-para {
+  font-size: 2em;
+  color: white;
+  font-family: 'Droid serif', serif;
+  font-weight: lighter;
+  letter-spacing: 5px;
+}
+
+@media screen and (max-width: 720px) {
+  #dooks {
+    font-size: 7em;
+  }
+
+  .medium-para {
+    font-size: 1.75em;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  #dooks { 
+    font-size: 5em;
+  }
+
+  .medium-para {
+    font-size: 1.5em;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  #dooks {
+    font-size: 4em;
+  }
+}
+
+.maintenance {
+  color: gray;//#c5a86a;
+  font-family: Verdana, Geneva, sans-serif; 
+}
+
+#links {
+  margin-top: 70px;
+}
+

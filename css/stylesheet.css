@@ -1,0 +1,195 @@
+body { 
+    background: url(/imgs/dooksshoes.jpg) no-repeat center center fixed; 
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+}
+
+.middle-div {
+  width: 100%;
+  height: 50%;
+  margin: auto;
+  position: absolute;
+  //background-color: white;
+  top: 0; left: 0; right: 0; bottom: 0;
+}
+
+.circle {
+  width: 50px;
+  height: 50px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  text-align: center;
+  //visibility: hidden;
+  margin: 0 auto;
+}
+
+.head-link {
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 6px;
+  font-family: 'Roboto', sans-serif; 
+  font-size: 20px;
+  padding-top: 15px;
+  padding-left: 5px;
+  display: block;
+  visibility: visible;
+}
+
+@media screen and (max-width: 720px) {
+  .circle {
+    width: 40px;
+    height: 40px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+  }
+
+  .head-link {
+    letter-spacing: 4px;
+    font-size: 15px;
+  }
+}
+
+.circle:hover {
+  background-color: lightblue;
+  visibility: visible;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+#fb-link {
+  color: #3a5795;
+}
+
+#fb-link:hover {
+  color: #C5A86A;
+}
+
+#tw-link {
+  color: #5ea9dd;
+}
+
+#tw-link:hover {
+  color: #C5A86A;
+//#a15622;
+}
+
+#yt-link {
+  color: #e12b28;
+}
+
+#yt-link:hover {
+  color: #C5A86A;
+//#1ED4D7;
+}
+
+#sc-link {
+  color: #ff5500;
+}
+
+#sc-link:hover {
+  color: #C5A86A;
+//#00AAFF;
+}
+
+#dooks {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 7em;
+  letter-spacing: 2px;
+  color: #C5A86A;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section-text {
+  text-align: center;
+}
+
+@media screen and (max-width: 640px) {
+  .section-text {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+}
+
+.center-text {
+  text-align: center;
+}
+
+.upper-text {
+  text-transform: uppercase;
+}
+
+.img-responsive {
+  margin: 0 auto;
+}
+
+.videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 25px;
+  height: 0;
+}
+
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#banner {
+  margin: 0;
+  padding: 0;
+  height: 400px;
+}
+
+@media screen and (max-width: 720px) {
+  #dooks
+    font-size: 7em;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  #dooks { 
+    font-size: 6em;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  #dooks {
+    font-size: 4em;
+  }
+}
+
+h2 {
+  font-family: "Palatino Linotype";
+  font-size: 40px;
+  margin: 30px 0px;
+}
+
+#rim {
+  display: block;
+  text-align: center;
+  width: 308px;
+}
+
+#fat_tank {
+  width: 100%;
+  height: 100% ;
+}
+
+.maintenance {
+  color: gray;//#c5a86a;
+  font-family: Verdana, Geneva, sans-serif; 
+}
